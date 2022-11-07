@@ -5,6 +5,7 @@
 DEFAULT_BRANCH := main
 VERSION := 0.0.0
 COMMIT := $(shell git rev-parse HEAD)
+SHELL := $(shell which bash)
 
 CURRENT_BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
 DEFAULT_BRANCH := main
