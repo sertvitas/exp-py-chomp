@@ -2,10 +2,10 @@
 
 # Determine this makefile's path.
 # Be sure to place this BEFORE `include` directives, if any.
+SHELL := $(shell which bash)
 DEFAULT_BRANCH := main
 VERSION := 0.0.0
 COMMIT := $(shell git rev-parse HEAD)
-SHELL := $(shell which bash)
 
 CURRENT_BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
 DEFAULT_BRANCH := main
@@ -25,19 +25,30 @@ clean-venv: ## re-create virtual env
 pylint: ## run pylint on python files
 	( \
        . .venv/bin/activate; \
-       find . -type f -name "*.py"  -not -path "./.venv/*" | xargs pylint --max-line-length=90; \
+       git ls-files '*.py' | xargs pylint --max-line-length=90; \
     )
 
 black: ## use black to format python files
 	( \
        . .venv/bin/activate; \
-       find . -type f -name "*.py" -not -path "./.venv/*" | xargs black; \
+       git ls-files '*.py' |  xargs black --line-length=79; \
+    )
+
+black-check: ## use black to format python files
+	( \
+       . .venv/bin/activate; \
+       git ls-files '*.py' |  xargs black --check --line-length=79; \
+    )
+
+shellcheck: ## use black to format python files
+	( \
+       git ls-files '*.sh' |  xargs shellcheck --format=gcc; \
     )
 
 unittest: ## run test that don't require deployed resources
 	( \
        source .venv/bin/activate; \
-       python3 -m pytest -v -m "not experimental" tests/; \
+       python3 -m pytest -v -m "unit" tests/; \
     )
 
 clean-cache: ## clean python adn pytest cache data
