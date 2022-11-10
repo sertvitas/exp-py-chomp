@@ -37,7 +37,7 @@ black: ## use black to format python files
 unittest: ## run test that don't require deployed resources
 	( \
        source .venv/bin/activate; \
-       python3 -m pytest -v -m "not deployment" tests/; \
+       python3 -m pytest -v -m "not experimental" tests/; \
     )
 
 clean-cache: ## clean python adn pytest cache data
