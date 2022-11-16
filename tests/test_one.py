@@ -5,7 +5,7 @@ from one import \
     list_clusters, \
     list_services, \
     list_containers, \
-    list_tasks
+    list_tasks, describe_tasks
 import pytest
 
 
@@ -34,5 +34,10 @@ def test_list_containers():
     assert True
 
 def test_list_tasks():
-    res = list_tasks()
+    res = list_tasks('common-sandbox-notificationservice')
     assert True
+
+
+def test_describe_tasks():
+    tasks = list_tasks('common-sandbox-notificationservice')
+    res = describe_tasks('common-sandbox-notificationservice', tasks)

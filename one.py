@@ -81,12 +81,14 @@ def list_containers():
     return result
     pass
 
-def list_tasks():
-    client = boto3.client("ecs", region_name="us-east-1")
+def list_tasks(cluster: str):
+    result = []
+    client = boto3.client("ecs", region_name="us-east-1",)
 
     paginator = client.get_paginator('list_tasks')
 
     response_iterator = paginator.paginate(
+        cluster=cluster,
         PaginationConfig={
             'PageSize':100
         }
@@ -95,4 +97,14 @@ def list_tasks():
     counter = 1
     for each_page in response_iterator:
         for each_task in each_page['taskArns']:
-            print(each_task)
+            result.append(each_task)
+    return result
+
+def describe_tasks(cluster:str, tasks: List[str]):
+    client = boto3.client("ecs")
+    response = client.describe_tasks(
+        cluster='common-sandbox-notificationservice',
+        tasks=tasks,
+    )
+    pass
+
