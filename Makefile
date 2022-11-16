@@ -48,7 +48,8 @@ shellcheck: ## use black to format python files
 unittest: ## run test that don't require deployed resources
 	( \
        source .venv/bin/activate; \
-       python3 -m pytest -v -m "not experimental" tests/; \
+#       python3 -m pytest -v -m "not experimental" tests/; \
+       python3 -m pytest -v tests/; \
     )
 
 clean-cache: ## clean python adn pytest cache data
