@@ -7,6 +7,7 @@ from one import (
     list_containers,
     list_tasks,
     describe_tasks,
+    images_from_task_description
 )
 import pytest
 
@@ -48,3 +49,13 @@ def test_describe_tasks():
     tasks = list_tasks("common-sandbox-notificationservice")
     res = describe_tasks("common-sandbox-notificationservice", tasks)
     assert True
+
+
+
+
+def test_images_from_task_description():
+    tasks = list_tasks("common-sandbox-notificationservice")
+    res = describe_tasks("common-sandbox-notificationservice", tasks)
+    images_from_task_description(res)
+    assert True
+

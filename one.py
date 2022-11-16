@@ -102,3 +102,9 @@ def describe_tasks(cluster: str, tasks: List[str]):
         tasks=tasks,
     )
     return response
+
+def images_from_task_description(td):
+    containers=td['tasks'][0]['containers']
+    container0_image=containers[0]['image']
+    container1_image=containers[1]['image']
+    pass
