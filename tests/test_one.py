@@ -47,3 +47,4 @@ def test_list_tasks():
 def test_describe_tasks():
     tasks = list_tasks("common-sandbox-notificationservice")
     res = describe_tasks("common-sandbox-notificationservice", tasks)
+    assert True

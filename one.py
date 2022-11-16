@@ -89,7 +89,6 @@ def list_tasks(cluster: str):
         cluster=cluster, PaginationConfig={"PageSize": 100}
     )
 
-    counter = 1
     for each_page in response_iterator:
         for each_task in each_page["taskArns"]:
             result.append(each_task)
@@ -102,4 +101,4 @@ def describe_tasks(cluster: str, tasks: List[str]):
         cluster="common-sandbox-notificationservice",
         tasks=tasks,
     )
-    pass
+    return response
