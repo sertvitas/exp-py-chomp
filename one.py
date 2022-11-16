@@ -2,19 +2,24 @@
 asdlfadlkdsajf
 """
 
-
-def blah():
-    """adhfads"""
-    print('Mondays, amirite?')
-    return 'Mondays, amirite?'
-
-def calc_addition(a, b):
-    return a + b
+from typing import Dict, List
 
 
-def calc_multiply(a, b):
-    return a * b
+def deployment_plan() -> Dict[str, Dict[str, List[str]]]:
+    return {
+        "rolling": {
+            "phase 1": ["notification"],
+            "phase 2": [
+                "tokenservice",
+                "devapi",
+                "rpapi",
+            ],
+        },
+        "downtime": {"phase 1": ["idpcore", "idpuser"]},
+    }
 
 
-def calc_substraction(a, b):
-    return a - b
+def use_plan(plan: Dict[str, Dict[str, List[str]]]):
+    rolling = plan["rolling"]
+    downtime = plan["downtime"]
+    return rolling["phase 1"][0]
