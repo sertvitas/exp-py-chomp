@@ -1,4 +1,11 @@
-from one import use_plan, deployment_plan, save_plan, list_clusters
+from one import \
+    use_plan, \
+    deployment_plan, \
+    save_plan, \
+    list_clusters, \
+    list_services, \
+    list_containers, \
+    list_tasks
 import pytest
 
 
@@ -16,4 +23,16 @@ def test_save_plan():
 
 def test_list_cluster():
     res = list_clusters()
+    assert True
+
+def test_list_services():
+    res = list_services()
+    assert True
+
+def test_list_containers():
+    res = list_containers()
+    assert True
+
+def test_list_tasks():
+    res = list_tasks()
     assert True
