@@ -1,0 +1,11 @@
+downtime:
+  phase 1:
+  - idpcore
+  - idpuser
+rolling:
+  phase 1:
+  - notification
+  phase 2:
+  - tokenservice
+  - devapi
+  - rpapi
